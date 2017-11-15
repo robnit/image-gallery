@@ -1,19 +1,20 @@
-import { addImg } from './Display';
+// import { addImg } from './Display';
 
 
-it('adds a new image', () => {
-  const newImg = {
-    title: 'test',
-    description: 'test',
-    url: 'test'
-  } ;
+// it('adds a new image', () => {
+//   const newImg = {
+//     _id: 'test',
+//     title: 'test',
+//     description: 'test',
+//     url: 'test'
+//   } ;
 
-  console.log('=========', newImg);
-  console.log('=========', this.state);
-  const newState = addImg(newImg);
-  expect(newState.imageData).toEqual({
-    ...newImg,
-    _id : newState.imageData._id
-  });
+//   const newState = addImg(newImg);
+//   console.log(newState);
 
-});
+//   expect(newState.imageData).toEqual({
+//     ...newImg,
+//     _id : newState.imageData._id
+//   });
+
+// });

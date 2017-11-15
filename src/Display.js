@@ -3,6 +3,7 @@ import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
 import AddImage from './AddImage';
+import shortid from 'shortid';
 
 export default class Display extends Component {
   constructor() {
@@ -10,16 +11,19 @@ export default class Display extends Component {
     this.state = {
       imageData: 
       [{ 
+        _id: shortid.generate(),
         title: 'Cute Bunny',
         description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
         url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
       },
       { 
+        _id: shortid.generate(),
         title: 'Bunny2',
         description: 'This isn\'t placeholder text',
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-25__605.jpg'
       },
       { 
+        _id: shortid.generate(),
         title: 'Final Boss',
         description: 'Very Good',
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
@@ -29,7 +33,6 @@ export default class Display extends Component {
       imageIndex: 0
     };
   }
-
 
   changeImage(change) {
     if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
@@ -45,7 +48,6 @@ export default class Display extends Component {
         newImage
       ]
     };
-    console.log(newState);
     this.setState(newState);
   }
 

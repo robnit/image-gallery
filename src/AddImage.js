@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shortid from 'shortid';
 
 export default class AddImage extends Component {
 
@@ -12,6 +13,7 @@ export default class AddImage extends Component {
           event.preventDefault();
           const { elements } = event.target;
           const newImg = {
+            _id: shortid.generate(),
             title: elements.title.value,
             description: elements.description.value,
             url: elements.url.value

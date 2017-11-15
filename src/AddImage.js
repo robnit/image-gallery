@@ -7,7 +7,13 @@ export default class AddImage extends Component {
     return(
       <div>
         
-        <form>
+        <form onSubmit={event => {
+          event.preventDefault();
+          const { elements } = event.target;
+          console.log(elements.title.value);
+          console.log(elements.description.value);
+          console.log(elements.url.value);
+        }}>
           <input name="title" placeholder="Title" />
           <input name="description" placeholder="Description" />
           <input name="url" placeholder="Url" /> 

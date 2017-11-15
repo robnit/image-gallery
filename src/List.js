@@ -5,14 +5,16 @@ export default class List extends Component {
     const { imageData } = this.props;
     return(
       <table>
-        {imageData.map(image => {
-          return (
-            <tr>
-              <td><a href={image.url}>{image.title}</a></td>
-              <td>{image.description}</td>
-            </tr>
-          );
-        })}
+        <tbody>
+          {imageData.map((image, i) => {
+            return (
+              <tr key={i} >
+                <td><a href={image.url}>{image.title}</a></td>
+                <td>{image.description}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     );
   }

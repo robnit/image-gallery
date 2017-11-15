@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
+import AddImage from './AddImage';
 
 export default class Display extends Component {
   constructor() {
@@ -42,11 +43,17 @@ export default class Display extends Component {
 
     const display = {
       list : <List imageData={imageData}/>,
+
       thumbnail : <Thumbnail imageData={imageData}/>,
+
       gallery : <Gallery 
         imageData={imageData}
         imageIndex={imageIndex}
-        changeImage={(change) => this.changeImage(change)} />
+        changeImage={(change) => this.changeImage(change)}/>,
+
+      addImage : <AddImage/>
+
+
     };
     
     return (
@@ -55,6 +62,7 @@ export default class Display extends Component {
           <option value="list">List</option>
           <option value="thumbnail">Thumbnails</option>
           <option value="gallery">Gallery</option>
+          <option value="addImage">Add Image</option>
         </select>
         {display[imageView]}
       </div>

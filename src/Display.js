@@ -51,12 +51,25 @@ export default class Display extends Component {
     this.setState(newState);
   }
 
+  removeImg(unwantedImage) {
+    const index = this.state.imageData.findIndex(image => image._id === unwantedImage._id);
+    if (index === -1) return;
+
+    const images = this.state.imageData.slice();
+    images.splice(index, 1);
+
+    return {
+      ...this.state,
+      images
+    };
+  }
+
 
   render() {
     const { imageData, imageView, imageIndex } = this.state;
 
     const display = {
-      list: <List imageData={imageData}/>,
+      list: <List imageData={imageData} remove={img => this.removeImg(img)}/>,
 
       thumbnail: <Thumbnail imageData={imageData}/>,
 

@@ -22,13 +22,13 @@
   font-size: large;
 }
 
-.thumbnailDisplay {
-  display: inline-block;
-}
-
 li {
   padding-top:20px;
   list-style: none;
+}
+
+.thumbnailDisplay {
+  display: inline-block;
 }
 
 .thumbnail {

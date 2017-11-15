@@ -8,7 +8,7 @@ export default class Display extends Component {
   constructor() {
     super();
     this.state = {
-      imageData : 
+      imageData: 
       [{ 
         title: 'Cute Bunny',
         description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
@@ -25,8 +25,8 @@ export default class Display extends Component {
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
       }],
 
-      imageView : 'list',
-      imageIndex : 0
+      imageView: 'list',
+      imageIndex: 0
     };
   }
 
@@ -34,7 +34,19 @@ export default class Display extends Component {
   changeImage(change) {
     if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
     if (change === -1 && this.state.imageIndex === 0) return;
-    this.setState({ imageIndex : this.state.imageIndex + change });
+    this.setState({ imageIndex: this.state.imageIndex + change });
+  }
+
+  addImg(newImage) {
+    const newState = {
+      ...this.state,
+      imageData: [
+        ...this.state.imageData,
+        newImage
+      ]
+    };
+    console.log(newState);
+    this.setState(newState);
   }
 
 
@@ -42,23 +54,23 @@ export default class Display extends Component {
     const { imageData, imageView, imageIndex } = this.state;
 
     const display = {
-      list : <List imageData={imageData}/>,
+      list: <List imageData={imageData}/>,
 
-      thumbnail : <Thumbnail imageData={imageData}/>,
+      thumbnail: <Thumbnail imageData={imageData}/>,
 
-      gallery : <Gallery 
+      gallery: <Gallery 
         imageData={imageData}
         imageIndex={imageIndex}
         changeImage={(change) => this.changeImage(change)}/>,
 
-      addImage : <AddImage/>
+      addImage: <AddImage addImg={newImage => this.addImg(newImage)}/>
 
 
     };
     
     return (
       <div>
-        <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView : target.value })}>
+        <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView: target.value })}>
           <option value="list">List</option>
           <option value="thumbnail">Thumbnails</option>
           <option value="gallery">Gallery</option>

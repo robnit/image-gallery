@@ -24,17 +24,29 @@ export default class Display extends Component {
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
       }],
 
-      imageView : 'list'
+      imageView : 'list',
+      imageIndex : 0
     };
   }
 
+
+  changeImage(change) {
+    if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
+    if (change === -1 && this.state.imageIndex === 0) return;
+    this.setState({ imageIndex : this.state.imageIndex + change });
+  }
+
+
   render() {
-    const { imageData, imageView } = this.state;
+    const { imageData, imageView, imageIndex } = this.state;
 
     const display = {
       list : <List imageData={imageData}/>,
       thumbnail : <Thumbnail imageData={imageData}/>,
-      gallery : <Gallery imageData={imageData}/>
+      gallery : <Gallery 
+        imageData={imageData}
+        imageIndex={imageIndex}
+        changeImage={(change) => this.changeImage(change)} />
     };
     
     return (
@@ -47,5 +59,6 @@ export default class Display extends Component {
         {display[imageView]}
       </div>
     );
+    
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
+import Gallery from './Gallery';
 
 export default class Display extends Component {
   constructor() {
@@ -29,7 +30,8 @@ export default class Display extends Component {
     const { imageData } = this.state;
     return (
       // <List imageData={imageData}/>
-      <Thumbnail imageData={imageData}/> 
+      // <Thumbnail imageData={imageData}/>
+      <Gallery imageData={imageData}/> 
     );
   }
 }

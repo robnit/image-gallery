@@ -28,10 +28,15 @@ export default class Display extends Component {
 
   render() {
     const { imageData } = this.state;
+
+    const display = {
+      list : <List imageData={imageData}/>,
+      thumbnail : <Thumbnail imageData={imageData}/>,
+      gallery : <Gallery imageData={imageData}/>
+    };
+    
     return (
-      // <List imageData={imageData}/>
-      // <Thumbnail imageData={imageData}/>
-      <Gallery imageData={imageData}/> 
+      display.gallery
     );
   }
 }

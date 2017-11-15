@@ -51,6 +51,7 @@ export default class Display extends Component {
       ]
     };
     this.setState(newState);
+    return newState;
   }
 
   removeImg(unwantedImage) {
@@ -64,6 +65,8 @@ export default class Display extends Component {
       ...this.state,
       imageData : images
     });
+
+    return this.state;
   }
 
 

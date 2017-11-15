@@ -22,12 +22,14 @@ export default class Display extends Component {
         title: 'Final Boss',
         description: 'Very Good',
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
-      }]
+      }],
+
+      imageView : 'list'
     };
   }
 
   render() {
-    const { imageData } = this.state;
+    const { imageData, imageView } = this.state;
 
     const display = {
       list : <List imageData={imageData}/>,
@@ -36,7 +38,14 @@ export default class Display extends Component {
     };
     
     return (
-      display.gallery
+      <div>
+        <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView : target.value })}>
+          <option value="list">List</option>
+          <option value="thumbnail">Thumbnails</option>
+          <option value="gallery">Gallery</option>
+        </select>
+        {display[imageView]}
+      </div>
     );
   }
 }

@@ -4,6 +4,8 @@ import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
 import AddImage from './AddImage';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
+
 
 export default class Display extends Component {
   constructor() {
@@ -96,3 +98,9 @@ export default class Display extends Component {
     
   }
 }
+
+Display.propTypes = {
+  imageData: PropTypes.array,
+  imageView: PropTypes.string,
+  imageIndex: PropTypes.number
+};

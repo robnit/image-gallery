@@ -52,16 +52,16 @@ export default class Display extends Component {
   }
 
   removeImg(unwantedImage) {
-    const index = this.state.imageData.findIndex(image => image._id === unwantedImage._id);
+    const index = this.state.imageData.findIndex(image => image._id === unwantedImage);
     if (index === -1) return;
 
     const images = this.state.imageData.slice();
     images.splice(index, 1);
 
-    return {
+    this.setState({
       ...this.state,
-      images
-    };
+      imageData : images
+    });
   }
 
 
@@ -79,7 +79,6 @@ export default class Display extends Component {
         changeImage={(change) => this.changeImage(change)}/>,
 
       addImage: <AddImage addImg={newImage => this.addImg(newImage)}/>
-
 
     };
     

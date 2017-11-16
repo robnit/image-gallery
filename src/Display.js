@@ -83,8 +83,6 @@ export default class Display extends Component {
         imageIndex={imageIndex}
         changeImage={(change) => this.changeImage(change)}/>,
 
-      addImage: <AddImage addImg={newImage => this.addImg(newImage)}/>
-
     };
     
     return (

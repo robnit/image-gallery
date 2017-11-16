@@ -3,7 +3,7 @@ import AddImage from './AddImage';
 
 export default class List extends Component {
   render() {
-    const { imageData, remove } = this.props;
+    const { imageData, remove, add } = this.props;
     return(
       <div className="center">
         <table>
@@ -20,7 +20,7 @@ export default class List extends Component {
             })}
             <tr>
               <td></td>
-              <td><AddImage addImg={newImage => this.addImg(newImage)}/></td>
+              <td><AddImage add={newImage => add(newImage)}/></td>
               <td></td>
             </tr>
           </tbody>

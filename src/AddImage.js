@@ -5,7 +5,7 @@ export default class AddImage extends Component {
 
   render() {
 
-    const { addImg } = this.props;
+    const { add } = this.props;
 
     return(
       <div>
@@ -19,7 +19,7 @@ export default class AddImage extends Component {
             url: elements.url.value
           };
           elements.title.value = elements.description.value = elements.url.value = '';
-          return addImg(newImg);
+          return add(newImg);
         }}>
           <input name="title" placeholder="Title" />
           <input name="description" placeholder="Description" />

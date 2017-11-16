@@ -74,7 +74,9 @@ export default class Display extends Component {
     const { imageData, imageView, imageIndex } = this.state;
 
     const display = {
-      list: <List imageData={imageData} remove={img => this.removeImg(img)}/>,
+      list: <List imageData={imageData} 
+        add={img => this.addImg(img)}
+        remove={img => this.removeImg(img)}/>,
 
       thumbnail: <Thumbnail imageData={imageData}/>,
 

@@ -7,11 +7,8 @@ it('adds a new image', () => {
     description: 'test',
     url: 'test'
   } ;
-
   const newState = addImage({ imageData: [] }, newImg);
-  console.log(newState);
   expect(newState).toEqual({ 
     imageData: [ { _id: 'test', title: 'test', description: 'test', url: 'test' } ] 
   });
-
 });

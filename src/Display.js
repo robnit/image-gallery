@@ -5,7 +5,7 @@ import Gallery from './Gallery';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 
-import { addImage } from './actions';
+import { addImage, removeImage } from './actions';
 
 
 export default class Display extends Component {
@@ -49,20 +49,9 @@ export default class Display extends Component {
   }
 
   removeImg(unwantedImage) {
-    const index = this.state.imageData.findIndex(image => image._id === unwantedImage);
-    if (index === -1) return;
-
-    const images = this.state.imageData.slice();
-    images.splice(index, 1);
-
-    this.setState({
-      ...this.state,
-      imageData : images
-    });
-
-    return this.state;
+    const newState = removeImage(this.state, unwantedImage);
+    this.setState(newState);
   }
-
 
   render() {
     const { imageData, imageView, imageIndex } = this.state;

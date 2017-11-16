@@ -3,11 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Display from './Display';
 import HeaderLinks from './HeaderLinks';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   render() {

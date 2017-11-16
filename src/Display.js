@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
-import HeaderLinks from './HeaderLinks';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { addImage, removeImage } from './actions';
 
@@ -39,7 +34,7 @@ export default class Display extends Component {
         url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
       }],
 
-      imageView: 'list',
+      // imageView: 'list',
       imageIndex: 0
     };
   }
@@ -61,7 +56,7 @@ export default class Display extends Component {
   }
 
   render() {
-    const { imageData, imageView, imageIndex } = this.state;
+    const { imageData, imageIndex } = this.state;
 
     const display = {
       list: <List imageData={imageData} 

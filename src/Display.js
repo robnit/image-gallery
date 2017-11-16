@@ -76,7 +76,6 @@ export default class Display extends Component {
           <option value="list">List</option>
           <option value="thumbnail">Thumbnails</option>
           <option value="gallery">Gallery</option>
-          <option value="addImage">Add Image</option>
         </select>
         {display[imageView]}
       </div>

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
-import AddImage from './AddImage';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
+
+import { addImage } from './actions';
 
 
 export default class Display extends Component {
@@ -43,15 +44,8 @@ export default class Display extends Component {
   }
 
   addImg(newImage) {
-    const newState = {
-      ...this.state,
-      imageData: [
-        ...this.state.imageData,
-        newImage
-      ]
-    };
+    const newState = addImage(this.state, newImage);
     this.setState(newState);
-    return newState;
   }
 
   removeImg(unwantedImage) {

@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
+import HeaderLinks from './HeaderLinks';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import 'bulma/css/bulma.css';
 
 import { addImage, removeImage } from './actions';
 
@@ -66,23 +73,33 @@ export default class Display extends Component {
       gallery: <Gallery 
         imageData={imageData}
         imageIndex={imageIndex}
-        changeImage={(change) => this.changeImage(change)}/>,
-
+        changeImage={(change) => this.changeImage(change)}/>
     };
-    
+
+
     return (
-      <div>
+      <div className="section">
+        <Router>
+          <div>
+            <HeaderLinks/>
+            <Route exact path="/" render={() => display.list}/>
+            <Route path="/thumbnail" render={() => display.thumbnail}/>
+            <Route path="/gallery" render={() => display.gallery}/>
+          </div>
+        </Router>
         <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView: target.value })}>
           <option value="list">List</option>
           <option value="thumbnail">Thumbnails</option>
           <option value="gallery">Gallery</option>
         </select>
-        {display[imageView]}
+
       </div>
     );
     
   }
 }
+
+
 
 Display.propTypes = {
   imageData: PropTypes.array,

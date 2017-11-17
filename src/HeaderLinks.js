@@ -3,14 +3,15 @@ import { NavLink  } from 'react-router-dom';
 
 const HeaderLink = props => <NavLink {...props} 
   className="button" 
+  style={{ 'margin' : '0 11px' }}
   activeClassName="is-primary"
 />;
 
 export default function Header() {
   return (
     <div>
-      <HeaderLink style={{ 'margin-right' : '22px' }} exact to="/">List </HeaderLink>
-      <HeaderLink style={{ 'margin-right' : '22px' }} to="/thumbnail">Thumbnail</HeaderLink>
+      <HeaderLink exact to="/">List </HeaderLink>
+      <HeaderLink to="/thumbnail">Thumbnail</HeaderLink>
       <HeaderLink to="/gallery">Gallery</HeaderLink>
     </div>
   );

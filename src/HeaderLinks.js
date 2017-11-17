@@ -9,9 +9,9 @@ const HeaderLink = props => <NavLink {...props}
 export default function Header() {
   return (
     <div>
-      <HeaderLink exact to="/">List </HeaderLink><span> </span>
-      <HeaderLink to="/thumbnail">Thumbnail</HeaderLink><span> </span>
-      <HeaderLink to="/gallery">Gallery</HeaderLink><span> </span>
+      <HeaderLink style={{ 'margin-right' : '22px' }} exact to="/">List </HeaderLink>
+      <HeaderLink style={{ 'margin-right' : '22px' }} to="/thumbnail">Thumbnail</HeaderLink>
+      <HeaderLink to="/gallery">Gallery</HeaderLink>
     </div>
   );
 }

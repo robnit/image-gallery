@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink  } from 'react-router-dom';
 
 const HeaderLink = props => <NavLink {...props} 
-  className="nav-link" 
-  activeClassName="active"
+  className="button" 
+  activeClassName="is-primary"
 />;
 
 export default function Header() {

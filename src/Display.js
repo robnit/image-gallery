@@ -71,7 +71,6 @@ export default class Display extends Component {
         changeImage={(change) => this.changeImage(change)}/>
     };
 
-
     return (
       <div className="section">
         <div>
@@ -79,6 +78,7 @@ export default class Display extends Component {
           <Route path="/thumbnail" render={() => display.thumbnail}/>
           <Route path="/gallery" render={() => display.gallery}/>
         </div>
+        
         {/* <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView: target.value })}>
           <option value="list">List</option>
           <option value="thumbnail">Thumbnails</option>
@@ -90,8 +90,6 @@ export default class Display extends Component {
     
   }
 }
-
-
 
 Display.propTypes = {
   imageData: PropTypes.array,

@@ -4,7 +4,7 @@ import AddAlbum from './AddAlbum';
 
 export default class List extends Component {
   render() {
-    const { imageData, remove, addImage, addAlbum } = this.props;
+    const { imageData, remove, addImage, albums, addAlbum } = this.props;
     return(
       <div className="center">
         <table>
@@ -24,6 +24,16 @@ export default class List extends Component {
               <td><AddImage add={newImage => addImage(newImage)}/></td>
               <td></td>
             </tr>
+
+            {albums.map((album, i) => {
+              const albumId = album._id;
+              return (
+                <tr key={i}>
+                  <td>{album.name}</td>
+                  <td><button onClick={() => remove(albumId)}> Remove </button></td>
+                </tr>
+              );
+            })}
 
             <tr>
               <td></td>

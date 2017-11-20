@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { Route } from 'react-router-dom';
 
-import { removeImage } from './actions';
-import { loadImages, addImage } from './images/images.actions';
+import { loadImages, addImage, removeImage } from './images/images.actions';
 import imageApi from './services/image-api';
 
 
@@ -60,8 +59,9 @@ export default class Display extends Component {
     this.setState(newState);
   }
 
-  removeImg(unwantedImage) {
-    const newState = removeImage(this.state, unwantedImage);
+  async removeImg(unwantedImage) {
+    const newImageData = await imageApi.remove(unwantedImage);
+    const newState = removeImage(this.state, newImageData);
     this.setState(newState);
   }
 

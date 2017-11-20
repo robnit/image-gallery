@@ -7,5 +7,9 @@ export default {
 
   add(image) {
     return api.post('/images', image);
+  },
+
+  remove(id) {
+    return api.delete(`/images/${id}`);
   }
 };

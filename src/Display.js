@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { Route } from 'react-router-dom';
 
-import { addImage, removeImage } from './actions';
-import { loadImages } from './images/images.actions';
+import { removeImage } from './actions';
+import { loadImages, addImage } from './images/images.actions';
 import imageApi from './services/image-api';
 
 
@@ -54,8 +54,9 @@ export default class Display extends Component {
     this.setState({ imageIndex: this.state.imageIndex + change });
   }
 
-  addImg(newImage) {
-    const newState = addImage(this.state, newImage);
+  async addImg(newImage) {
+    const newImageData = await imageApi.add(newImage);
+    const newState = addImage(this.state, newImageData);
     this.setState(newState);
   }
 

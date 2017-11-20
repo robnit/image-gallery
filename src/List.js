@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import AddImage from './AddImage';
+import AddAlbum from './AddAlbum';
 
 export default class List extends Component {
   render() {
-    const { imageData, remove, add } = this.props;
+    const { imageData, remove, addImage, addAlbum } = this.props;
     return(
       <div className="center">
         <table>
@@ -20,9 +21,16 @@ export default class List extends Component {
             })}
             <tr>
               <td></td>
-              <td><AddImage add={newImage => add(newImage)}/></td>
+              <td><AddImage add={newImage => addImage(newImage)}/></td>
               <td></td>
             </tr>
+
+            <tr>
+              <td></td>
+              <td><AddAlbum add={newImage => addAlbum(newImage)}/></td>
+              <td></td>
+            </tr>
+
           </tbody>
         </table>
       </div>

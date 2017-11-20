@@ -10,7 +10,7 @@ import { Route } from 'react-router-dom';
 import { loadImages, addImage, removeImage } from './images/images.actions';
 import imageApi from './services/image-api';
 
-import { loadAlbums } from './albums/albums.actions';
+import { loadAlbums, addAlbum } from './albums/albums.actions';
 import albumApi from './services/album-api';
 
 
@@ -74,13 +74,22 @@ export default class Display extends Component {
     this.setState(newState);
   }
 
+  async handleAddAlbum(newAlbum) {
+    const newAlbumData = await albumApi.add(newAlbum);
+    const newState = addAlbum(this.state, newAlbumData);
+    this.setState(newState);
+  }
+
+
+
   render() {
     const { imageData, imageIndex } = this.state;
 
     const display = {
       list: <List imageData={imageData} 
-        add={img => this.addImg(img)}
-        remove={img => this.removeImg(img)}/>,
+        addImage={img => this.addImg(img)}
+        remove={img => this.removeImg(img)}
+        addAlbum={album => this.handleAddAlbum(album)}/>,
 
       thumbnail: <Thumbnail imageData={imageData}/>,
 

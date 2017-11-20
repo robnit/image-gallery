@@ -2,41 +2,50 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { Route } from 'react-router-dom';
 
 import { addImage, removeImage } from './actions';
+import { loadImages } from './images/images.actions';
+import imageApi from './services/image-api';
 
 
 export default class Display extends Component {
   constructor() {
     super();
     this.state = {
-      imageData: 
-      [{ 
-        _id: shortid.generate(),
-        title: 'Cute Bunny',
-        description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
-        url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
-      },
-      { 
-        _id: shortid.generate(),
-        title: 'Bunny2',
-        description: 'This isn\'t placeholder text',
-        url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-25__605.jpg'
-      },
-      { 
-        _id: shortid.generate(),
-        title: 'Final Boss',
-        description: 'Very Good',
-        url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
-      }],
+      imageData: [],
+      // [{ 
+      //   _id: shortid.generate(),
+      //   title: 'Cute Bunny',
+      //   description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
+      //   url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
+      // },
+      // { 
+      //   _id: shortid.generate(),
+      //   title: 'Bunny2',
+      //   description: 'This isn\'t placeholder text',
+      //   url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-25__605.jpg'
+      // },
+      // { 
+      //   _id: shortid.generate(),
+      //   title: 'Final Boss',
+      //   description: 'Very Good',
+      //   url: 'http://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-110__605.jpg'
+      // }],
 
       // imageView: 'list',
       imageIndex: 0
     };
+  }
+
+  async componentDidMount() {
+    const imageData = await imageApi.get();
+    const newState = loadImages(this.state, imageData);
+    console.log('newState is', newState);
+    this.setState(newState);
   }
 
   changeImage(change) {

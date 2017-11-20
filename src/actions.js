@@ -20,5 +20,4 @@ export function removeImage(state, unwantedImage) {
     ...state,
     imageData : images
   };
-
 }

@@ -10,6 +10,9 @@ import { Route } from 'react-router-dom';
 import { loadImages, addImage, removeImage } from './images/images.actions';
 import imageApi from './services/image-api';
 
+import { loadAlbums } from './albums/albums.actions';
+import albumApi from './services/album-api';
+
 
 export default class Display extends Component {
   constructor() {
@@ -36,15 +39,21 @@ export default class Display extends Component {
       // }],
 
       // imageView: 'list',
-      imageIndex: 0
+      imageIndex: 0,
+      albums: []
     };
   }
 
   async componentDidMount() {
     const imageData = await imageApi.get();
-    const newState = loadImages(this.state, imageData);
-    console.log('newState is', newState);
+    let newState = loadImages(this.state, imageData);
     this.setState(newState);
+
+    const albumData = await albumApi.get();
+    newState = loadAlbums(this.state, albumData);
+    this.setState(newState);
+    console.log('newState is', newState);
+    
   }
 
   changeImage(change) {

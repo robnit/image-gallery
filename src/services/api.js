@@ -14,7 +14,6 @@ export default {
   },
 
   post(path, data) {
-    console.log('path:', path, '\n data:', data);
     return wrap(
       fetch(`${url}${path}`, {
         method: 'post',

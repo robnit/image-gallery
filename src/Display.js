@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
-// import shortid from 'shortid';
+import Albums from './Albums';
+
 import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { Route } from 'react-router-dom';
@@ -52,7 +53,6 @@ export default class Display extends Component {
     const albumData = await albumApi.get();
     newState = loadAlbums(this.state, albumData);
     this.setState(newState);
-    console.log('newState is', newState);
     
   }
 
@@ -86,8 +86,6 @@ export default class Display extends Component {
     this.setState(newState);
   }
 
-
-
   render() {
     const { imageData, imageIndex, albums } = this.state;
 
@@ -105,7 +103,7 @@ export default class Display extends Component {
       gallery: <Gallery 
         imageData={imageData}
         imageIndex={imageIndex}
-        changeImage={(change) => this.changeImage(change)}/>
+        changeImage={(change) => this.changeImage(change)}/>,
     };
 
     return (
@@ -114,6 +112,9 @@ export default class Display extends Component {
           <Route exact path="/" render={() => display.list}/>
           <Route path="/thumbnail" render={() => display.thumbnail}/>
           <Route path="/gallery" render={() => display.gallery}/>
+
+          <Route path="/albums" render={() => <Albums albums={albums}/>}/>
+
         </div>
         
         {/* <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView: target.value })}>

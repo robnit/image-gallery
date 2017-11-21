@@ -14,7 +14,7 @@
     "start": "react-scripts start",
     "cra:build": "react-scripts build",
     "build": "npm run cra:build && npm run copy",        
-    "test": "exit 0",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }

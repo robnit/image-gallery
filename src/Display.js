@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
-// import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { Route } from 'react-router-dom';

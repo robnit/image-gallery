@@ -104,16 +104,19 @@ export default class Display extends Component {
         imageData={imageData}
         imageIndex={imageIndex}
         changeImage={(change) => this.changeImage(change)}/>,
+
+      albums: <Albums
+        albums={albums}
+        addAlbum={album => this.handleAddAlbum(album)}
+        removeAlbum={album => this.handleRemoveAlbum(album)}/>
     };
 
     return (
       <div className="section">
         <div>
-          <Route exact path="/" render={() => display.list}/>
-          <Route path="/thumbnail" render={() => display.thumbnail}/>
-          <Route path="/gallery" render={() => display.gallery}/>
-
-          <Route path="/albums" render={() => <Albums albums={albums}/>}/>
+          <Route exact path="/" render={() => display.albums}/>
+          {/* <Route path="/thumbnail" render={() => display.thumbnail}/>
+          <Route path="/gallery" render={() => display.gallery}/> */}
 
         </div>
         

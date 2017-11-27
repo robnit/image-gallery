@@ -29,7 +29,8 @@ export default class Images extends PureComponent {
   }
 
   handleRemove = async image => {
-    await imageApi.remove(image.list, image._id);
+    console.log('removed id is', image);
+    await imageApi.remove(image._id);
     const newState = removeImage(this.state, image._id);
     this.setState(newState);
   }
@@ -64,12 +65,11 @@ export default class Images extends PureComponent {
         <table>
           <tbody>
             {images.map((image, i) => {
-              const imageId = image._id;
               return (
                 <tr key={i}>
                   <td><a href={image.url}>{image.title}</a></td>
                   <td>{image.description}</td>
-                  <td><button onClick={() => this.handleRemove(imageId)}> Remove </button></td>
+                  <td><button onClick={() => this.handleRemove(image)}> Remove </button></td>
                 </tr>
               );
             })}

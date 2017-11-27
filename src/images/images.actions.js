@@ -1,15 +1,15 @@
 export function loadImages(state, images) {
   return {
     ...state,
-    imageData: images
+    images: images
   };
 }
 
 export function addImage(state, newImage) {
   const newState = {
     ...state,
-    imageData: [
-      ...state.imageData,
+    images: [
+      ...state.images,
       newImage
     ]
   };
@@ -17,14 +17,14 @@ export function addImage(state, newImage) {
 }
 
 export function removeImage(state, unwantedImage) {
-  const index = state.imageData.findIndex(image => image._id === unwantedImage._id);
+  const index = state.images.findIndex(image => image._id === unwantedImage);
   if (index === -1) return;
 
-  const images = state.imageData.slice();
+  const images = state.images.slice();
   images.splice(index, 1);
 
   return {
     ...state,
-    imageData : images
+    images : images
   };
 }

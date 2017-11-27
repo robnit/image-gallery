@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import HeaderLinks from './HeaderLinks';
-import AddImage from './AddImage';
 import albumApi from './services/album-api';
 import imageApi from './services/image-api';
 import { addImage, removeImage } from './images/images.actions';
@@ -37,14 +35,13 @@ export default class Images extends PureComponent {
   }
 
   handleRemove = async image => {
-    console.log('removed id is', image);
     await imageApi.remove(image._id);
     const newState = removeImage(this.state, image._id);
     this.setState(newState);
   }
 
   changeImage(change) {
-    if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
+    if (change === 1 && this.state.imageIndex === this.state.images.length - 1) return;
     if (change === -1 && this.state.imageIndex === 0) return;
     this.setState({ imageIndex: this.state.imageIndex + change });
   }
@@ -52,16 +49,9 @@ export default class Images extends PureComponent {
   getAlbumId() {
     return this.props.match.params.id;
   }
-  
-  // handleComplete = async (id, completed) => {
-  //   const task = this.state.tasks.find(t => t._id === id);
-  //   const updated = await taskApi.update(this.getListId(), { ...task, completed });
-  //   const newState = updateTask(this.state, updated);
-  //   this.setState(newState);
-  // }
 
   render() {
-    const { images } = this.state;
+    const { images, imageIndex } = this.state;
 
     const ViewLink = props => <NavLink {...props} 
       className="button" 
@@ -75,7 +65,9 @@ export default class Images extends PureComponent {
         handleRemove={image=>this.handleRemove(image)} />,
         
       thumbnail: <Thumbnail images={images}/>,
-      gallery: <Gallery images={images}/>
+      gallery: <Gallery images={images}
+        imageIndex={imageIndex}
+        changeImage={change=>this.changeImage(change)}/>
     };
 
     return (
@@ -106,8 +98,8 @@ export default class Images extends PureComponent {
 
 
             <Route exact path={`/albums/${this.getAlbumId()}/`} render={() => display.list}/>
-            <Route path="/thumbnail" render={() => display.thumbnail}/>
-            <Route path="/gallery" render={() => display.gallery}/>
+            <Route path={`/albums/${this.getAlbumId()}/thumbnail`} render={() => display.thumbnail}/>
+            <Route path={`/albums/${this.getAlbumId()}/gallery`} render={() => display.gallery}/>
             {/* 
             {images.map((image, i) => {
               return (

@@ -3,6 +3,7 @@ import List from './List';
 import Thumbnail from './Thumbnail';
 import Gallery from './Gallery';
 import Albums from './Albums';
+import Images from './Images';
 
 import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
@@ -115,6 +116,7 @@ export default class Display extends Component {
       <div className="section">
         <div>
           <Route exact path="/" render={() => display.albums}/>
+          <Route path="/albums/:id" component={Images}/>
           {/* <Route path="/thumbnail" render={() => display.thumbnail}/>
           <Route path="/gallery" render={() => display.gallery}/> */}
 

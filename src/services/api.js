@@ -1,4 +1,3 @@
-// import superagent from 'superagent';
 
 const url = '/api';
 
@@ -8,6 +7,7 @@ const wrap = promise => {
 
 export default {
   get(path) {
+    console.log(`time to get from ${url}${path}`);
     return wrap(
       fetch(`${url}${path}`)
     );

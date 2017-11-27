@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import AddImage from './AddImage';
 import albumApi from './services/album-api';
 import imageApi from './services/image-api';
 import { addImage, removeImage } from './images/images.actions';
@@ -72,11 +73,11 @@ export default class Images extends PureComponent {
                 </tr>
               );
             })}
-            {/* <tr>
+            <tr>
               <td></td>
-              <td><AddImage add={newImage => addImage(newImage)}/></td>
+              <td><AddImage add={newImage => this.handleAdd(newImage)}/></td>
               <td></td>
-            </tr> */}
+            </tr>
 
           </tbody>
         </table>

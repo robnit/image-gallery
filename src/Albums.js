@@ -21,7 +21,7 @@ export default class Albums extends Component {
 
             <tr>
               <td></td>
-              <td><AddAlbum add={newImage => addAlbum(newImage)}/></td>
+              <td><AddAlbum add={newAlbum => addAlbum(newAlbum)}/></td>
               <td></td>
             </tr>
 

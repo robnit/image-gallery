@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import albumApi from './services/album-api';
+import imageApi from './services/image-api';
+import { addImage, removeImage } from './images/images.actions';
+
 
 export default class Images extends PureComponent {
   constructor() {
@@ -10,27 +13,25 @@ export default class Images extends PureComponent {
   }
 
   async componentDidMount() {
-    console.log('in images component');
     const { images }  = await albumApi.get(this.props.match.params.id);
-    console.log('images is', images);
     this.setState({ images });  }
 
-  // handleAdd = async ({ title }) => {
-  //   const task = await taskApi.add({ 
-  //     list: this.getListId(),
-  //     title, 
-  //     completed: false 
-  //   });
+  handleAdd = async ({ title, url, description }) => {
+    const image = await imageApi.add({ 
+      album: this.props.match.params.id,
+      description,
+      title,
+      url 
+    });
+    const newState = addImage(this.state, image);
+    this.setState(newState);
+  }
 
-  //   const newState = addTask(this.state, task);
-  //   this.setState(newState);
-  // }
-
-  // handleRemove = async task => {
-  //   await taskApi.remove(task.list, task._id);
-  //   const newState = removeTask(this.state, task._id);
-  //   this.setState(newState);
-  // }
+  handleRemove = async image => {
+    await imageApi.remove(image.list, image._id);
+    const newState = removeImage(this.state, image._id);
+    this.setState(newState);
+  }
 
   // handleComplete = async (id, completed) => {
   //   const task = this.state.tasks.find(t => t._id === id);
@@ -67,7 +68,7 @@ export default class Images extends PureComponent {
                 <tr key={i}>
                   <td><a href={image.url}>{image.title}</a></td>
                   <td>{image.description}</td>
-                  {/* <td><button onClick={() => removeImage(imageId)}> Remove </button></td> */}
+                  <td><button onClick={() => this.handleRemove(imageId)}> Remove </button></td>
                 </tr>
               );
             })}

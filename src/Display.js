@@ -56,12 +56,6 @@ export default class Display extends Component {
     
   }
 
-  changeImage(change) {
-    if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
-    if (change === -1 && this.state.imageIndex === 0) return;
-    this.setState({ imageIndex: this.state.imageIndex + change });
-  }
-
   async addImg(newImage) {
     const newImageData = await imageApi.add(newImage);
     const newState = addImage(this.state, newImageData);
@@ -116,17 +110,9 @@ export default class Display extends Component {
         <div>
           <Route exact path="/" render={() => display.albums}/>
           <Route path="/albums/:id" component={Images}/>
-          {/* <Route path="/thumbnail" render={() => display.thumbnail}/>
-          <Route path="/gallery" render={() => display.gallery}/> */}
-
+          <Route path="/thumbnail" render={() => display.thumbnail}/>
+          <Route path="/gallery" render={() => display.gallery}/>
         </div>
-        
-        {/* <select defaultValue={imageView} onChange={({ target }) => this.setState({ imageView: target.value })}>
-          <option value="list">List</option>
-          <option value="thumbnail">Thumbnails</option>
-          <option value="gallery">Gallery</option>
-        </select> */}
-
       </div>
     );
     

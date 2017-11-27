@@ -41,7 +41,6 @@ export default class Display extends Component {
       // }],
 
       // imageView: 'list',
-      imageIndex: 0,
       albums: []
     };
   }

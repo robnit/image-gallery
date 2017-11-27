@@ -1,15 +1,23 @@
 import React, { PureComponent } from 'react';
+import HeaderLinks from './HeaderLinks';
 import AddImage from './AddImage';
 import albumApi from './services/album-api';
 import imageApi from './services/image-api';
 import { addImage, removeImage } from './images/images.actions';
+
+import List from './List';
+import Thumbnail from './Thumbnail';
+import Gallery from './Gallery';
+
+import { Route, NavLink  } from 'react-router-dom';
 
 
 export default class Images extends PureComponent {
   constructor() {
     super();
     this.state = {
-      images: []
+      images: [],
+      imageIndex: 0
     };
   }
 
@@ -35,6 +43,16 @@ export default class Images extends PureComponent {
     this.setState(newState);
   }
 
+  changeImage(change) {
+    if (change === 1 && this.state.imageIndex === this.state.imageData.length - 1) return;
+    if (change === -1 && this.state.imageIndex === 0) return;
+    this.setState({ imageIndex: this.state.imageIndex + change });
+  }
+
+  getAlbumId() {
+    return this.props.match.params.id;
+  }
+  
   // handleComplete = async (id, completed) => {
   //   const task = this.state.tasks.find(t => t._id === id);
   //   const updated = await taskApi.update(this.getListId(), { ...task, completed });
@@ -45,7 +63,24 @@ export default class Images extends PureComponent {
   render() {
     const { images } = this.state;
 
+    const ViewLink = props => <NavLink {...props} 
+      className="button" 
+      style={{ 'margin' : '0 11px' }}
+      activeClassName="is-primary"
+    />;
+
+    const display = {
+      list: <List images={images} 
+        handleAdd={image => this.handleAdd(image)} 
+        handleRemove={image=>this.handleRemove(image)} />,
+        
+      thumbnail: <Thumbnail images={images}/>,
+      gallery: <Gallery images={images}/>
+    };
+
     return (
+
+      
       // <section>
       //   <h3>Hey you have {tasks.length} tasks</h3>
       //   <ul className="items">
@@ -60,10 +95,20 @@ export default class Images extends PureComponent {
       //     <input name="title"/>
       //   </AddItem>
       // </section>
-
       <div>
-        <table>
-          <tbody>
+        <ViewLink exact to={`/albums/${this.getAlbumId()}/`}>List </ViewLink>
+        <ViewLink to={`/albums/${this.getAlbumId()}/thumbnail`}>Thumbnail</ViewLink>
+        <ViewLink to={`/albums/${this.getAlbumId()}/gallery`}>Gallery</ViewLink>
+        <div className='center'>
+       
+          <table>
+          
+
+
+            <Route exact path={`/albums/${this.getAlbumId()}/`} render={() => display.list}/>
+            <Route path="/thumbnail" render={() => display.thumbnail}/>
+            <Route path="/gallery" render={() => display.gallery}/>
+            {/* 
             {images.map((image, i) => {
               return (
                 <tr key={i}>
@@ -77,10 +122,11 @@ export default class Images extends PureComponent {
               <td></td>
               <td><AddImage add={newImage => this.handleAdd(newImage)}/></td>
               <td></td>
-            </tr>
+            </tr> */}
 
-          </tbody>
-        </table>
+
+          </table>
+        </div>
       </div>
     );
   }

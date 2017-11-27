@@ -1,49 +1,28 @@
 import React, { Component } from 'react';
 import AddImage from './AddImage';
-import AddAlbum from './AddAlbum';
 
 export default class List extends Component {
   render() {
-    const { imageData, removeImage, addImage, albums, addAlbum, removeAlbum } = this.props;
+    const { images, handleAdd, handleRemove } = this.props;
     return(
-      <div className="center">
-        <table>
-          <tbody>
-            {imageData.map((image, i) => {
-              const imageId = image._id;
-              return (
-                <tr key={i}>
-                  <td><a href={image.url}>{image.title}</a></td>
-                  <td>{image.description}</td>
-                  <td><button onClick={() => removeImage(imageId)}> Remove </button></td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td></td>
-              <td><AddImage add={newImage => addImage(newImage)}/></td>
-              <td></td>
+      <tbody>
+        
+        {images.map((image, i) => {
+          return (
+            <tr key={i}>
+              <td><a href={image.url}>{image.title}</a></td>
+              <td>{image.description}</td>
+              <td><button onClick={() => handleRemove(image)}> Remove </button></td>
             </tr>
+          );
+        })}
+        <tr>
+          <td></td>
+          <td><AddImage add={newImage => handleAdd(newImage)}/></td>
+          <td></td>
+        </tr>
 
-            {albums.map((album, i) => {
-              const albumId = album._id;
-              return (
-                <tr key={i}>
-                  <td>{album.name}</td>
-                  <td><button onClick={() => removeAlbum(albumId)}> Remove </button></td>
-                </tr>
-              );
-            })}
-
-            <tr>
-              <td></td>
-              <td><AddAlbum add={newImage => addAlbum(newImage)}/></td>
-              <td></td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
+      </tbody>
     );
   }
 }
